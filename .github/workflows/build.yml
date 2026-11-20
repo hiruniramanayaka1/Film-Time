@@ -7,6 +7,10 @@ on:
   pull_request:
     branches: [ "main", "dev" ]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 env:
   ORG_GRADLE_PROJECT_FILM_TIME_TMDB_API_KEY: ${{ secrets.FILM_TIME_TMDB_API_KEY }}
   ORG_GRADLE_PROJECT_FILM_TIME_TRAKT_CLIENT_ID: ${{ secrets.FILM_TIME_TRAKT_CLIENT_ID }}
